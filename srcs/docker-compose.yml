@@ -1,0 +1,5 @@
+version: '3.8'
+services:
+  example:
+    image: alpine
+    command: ["echo", "Docker is working!"]
