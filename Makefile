@@ -1,8 +1,8 @@
-all:
+all: up
+	
+up:	
 	mkdir -p /home/$(USER)/data/wordpress
 	mkdir -p /home/$(USER)/data/mariadb
-	up
-up:	
 	docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
