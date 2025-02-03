@@ -1,5 +1,4 @@
-# filepath: /Users/agusheredia/Desktop/inception/srcs/requirements/mariadb/tools/mariadb.sh
-#!/bin/sh
+#!/bin/bash
 
 # Inicia el servicio de MariaDB
 service mysql start
