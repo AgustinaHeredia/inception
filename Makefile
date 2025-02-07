@@ -2,11 +2,11 @@
 UNAME_S := $(shell uname -s)
 
 # Define las rutas de los directorios de datos según el sistema operativo
-ifeq ($(UNAME_S), Darwin)
-    DATA_DIR := /Users/$(USER)/data
-else
-    DATA_DIR := /home/$(USER)/data
-endif
+#ifeq ($(UNAME_S), Darwin)
+#    DATA_DIR := /Users/$(USER)/data
+#else
+DATA_DIR := /home/$(USER)/data
+#endif
 
 all: up
 

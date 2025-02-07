@@ -1,23 +1,26 @@
-# filepath: /Users/agusheredia/Desktop/inception/srcs/requirements/mariadb/Dockerfile
 FROM debian:11.9
 
-# Update apt-get and install needed packages
-RUN apt-get -y update && apt-get install -y mariadb-server
+# Actualiza apt-get e instale los paquetes necesarios
+RUN apt-get update -y \ 
+		&& apt-get upgrade -y \
+		&& apt-get install mariadb-server -y
 
-# Copy mariadb conf, this settings will override default settings
-COPY ./conf/mariadb.conf /etc/mysql/mariadb.conf.d
+# Exponer el puerto 3306, utilizado por MYSQL para realizar conexiones
+EXPOSE 3306
 
-# Copy script from host machine to container
+# Copiar la configuración de mariadb, esta configuración anulará la configuración predeterminada
+COPY ./conf/mariadb.cnf /etc/mysql/mariadb.conf.d/mariadb.cnf
+
+# Copiar el script desde la máquina host al contenedor
 COPY ./tools/mariadb.sh /etc
-RUN chmod +x /etc/mariadb.sh
 
-# Create /var/run/mysqld if it doesn't exist, needed by mysql to store socket files and PID's
+# otorga permisos de ejecución al script mariadb.sh en el contenedor
+RUN chmod a+x /usr/local/bin/mariadb.sh
+
+# Crea /var/run/mysqld si no existe, MySQL lo necesita para almacenar archivos de socket y PID
 RUN mkdir -p /var/run/mysqld && \
     chown -R mysql:mysql /var/run/mysqld && \
     chmod 775 /var/run/mysqld
 
-# Expose port 3306, used by MYSQL to make connections 
-EXPOSE 3306
-
-# Execute script when container is ready
-ENTRYPOINT ["/etc/mariadb.sh"]
+# Ejecuta script cuando el contenedor esté listo
+ENTRYPOINT ["/bin/bash", "/usr/local/bin/mariadb.sh"]
