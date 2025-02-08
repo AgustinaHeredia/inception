@@ -9,10 +9,10 @@ RUN apt-get update -y \
 EXPOSE 3306
 
 # Copiar la configuración de mariadb, esta configuración anulará la configuración predeterminada
-COPY ./conf/mariadb.cnf /etc/mysql/mariadb.conf.d/mariadb.cnf
+COPY ./conf/mariadb.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Copiar el script desde la máquina host al contenedor
-COPY ./tools/mariadb.sh /etc
+COPY tools/mariadb.sh /usr/local/bin/mariadb.sh
 
 # otorga permisos de ejecución al script mariadb.sh en el contenedor
 RUN chmod a+x /usr/local/bin/mariadb.sh
