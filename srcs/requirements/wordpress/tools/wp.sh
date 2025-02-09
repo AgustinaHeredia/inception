@@ -38,8 +38,8 @@ else
     # Crea un usuario adicional con el rol de colaborador
     wp user create $WP_USER $WP_EMAIL --role=contributor --user_pass=$WP_PASS --allow-root
 
-    # Instala y activa el tema "impressionist"
-    wp theme install impressionist --activate --allow-root
+    # Instala y activa el tema
+    wp theme install inspiro --activate --allow-root
 fi
 # Ejecuta php-fpm con la bandera -F para que no se ejecute en modo separado,
 # se ejecutará en primer plano y mostrará los flujos de error y salida en la terminal.

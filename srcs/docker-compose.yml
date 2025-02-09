@@ -14,11 +14,11 @@ volumes:
       type: none
   
   mariadb_data:
+    driver: local
     driver_opts:
       device: /home/${USER}/data/mysql
       o: bind
       type: none
-    driver: local
 
 services:
   nginx:
@@ -32,6 +32,8 @@ services:
     restart: always
     networks:
       - agheredinet
+    env_file:
+      - .env
 
   mariadb:
     container_name: mariadb
@@ -39,22 +41,18 @@ services:
     image: mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
+    env_file:
+      - .env
     networks:
       - agheredinet
-    env_file:
-       - .env
-    restart: always
 
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
     image: wordpress
-    depends_on:
-      - mariadb
     volumes:
       - wordpress_data:/var/www/html
-    networks:
-      - agheredinet
     env_file:
       - .env
-    restart: always
+    networks:
+      - agheredinet

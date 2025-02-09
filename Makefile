@@ -9,6 +9,8 @@ all: up
 
 up:
 	docker-compose -f ./srcs/docker-compose.yml up -d --build
+	mkdir -p /home/$(USER)/data/mysql
+	mkdir -p /home/$(USER)/data/wordpress
 
 stop:
 	docker-compose -f ./srcs/docker-compose.yml stop
@@ -17,9 +19,9 @@ down:
 	docker-compose -f ./srcs/docker-compose.yml down
 
 clean:
-	docker-compose -f ./srcs/docker-compose.yml rm
 	rm -rf /home/$(USER)/data/mysql/*
 	rm -rf /home/$(USER)/data/wordpress/*
+	docker-compose -f ./srcs/docker-compose.yml rm
 
 ps:
 	docker-compose -f ./srcs/docker-compose.yml ps
@@ -34,8 +36,8 @@ fclean: down clean
 	docker rm ${D_PS} || true
 	docker rmi ${D_IMG} || true
 	docker system prune -af --volumes || true
-	docker volume rm srcs_wordpress || true
-	docker volume rm srcs_mariadb || true
+	docker volume rm srcs_wordpress_data || true
+	docker volume rm srcs_mariadb_data || true
 
 re: fclean up
 
