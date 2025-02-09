@@ -3,7 +3,7 @@ FROM debian:11.9
 
 # Actualiza la lista de paquetes e instala curl, php7.4-mysql, php7.4-fpm y netcat
 RUN apt-get update -y && \
-        apt-get install -y curl php7.4-mysql php7.4-fpm netcat
+        apt-get install -y curl php7.4-fpm php7.4-mysqli netcat
 
 # Descarga wp-cli.phar, le otorga permisos de ejecución y lo mueve a /usr/local/bin/wp
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
