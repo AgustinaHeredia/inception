@@ -3,8 +3,8 @@
 # Crea certificados TLS para enviar datos a través de HTTPS
 echo "Creando certificado SSL..."
 #!/bin/bash
-if [ ! -f ${SS_CERT} ]; then
-	openssl req -newkey rsa:4096 -x509 -days 365 -nodes -out ${SS_CERT} -keyout ${SS_KEY} -subj "/C=ES/ST=Barcelona/L=Barcelona/O=42 Barcelona/CN=${DOMAIN_NAME}";
+if [ ! -f /etc/ssl/certs/nginx.crt ]; then
+	openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/ssl/private/nginx.key -out /etc/ssl/certs/nginx.crt -subj "/C=ES/ST=Barcelona/L=Barcelona/O=wordpress/CN=${DOMAIN_NAME}";
 fi
 echo "Creación exitosas de certificado SSL!"
 
