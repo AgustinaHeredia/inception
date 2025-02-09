@@ -31,8 +31,7 @@ logs:
 	docker logs wordpress
 	docker logs nginx
 
-fclean:
-	down clean
+fclean: down clean
 	docker stop ${D_PS} || true
 	docker rm ${D_PS} || true
 	docker rmi ${D_IMG} || true
