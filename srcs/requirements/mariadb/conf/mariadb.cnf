@@ -4,31 +4,18 @@
 [mysqld]
 # Este grupo es leído por el demonio mysqld.
 
-user                    = mysql
-# Especifica el usuario bajo el cual se ejecutará el servidor MariaDB.
-
-pid-file                = /run/mysqld/mysqld.pid
-# Especifica la ubicación del archivo PID del servidor MariaDB.
-
-socket                  = /run/mysqld/mysqld.sock
-# Especifica la ubicación del archivo de socket utilizado para las conexiones locales.
-
-port                    = 3306
-# Especifica el puerto en el que el servidor MariaDB escuchará las conexiones.
-
-basedir                 = /usr
-# Especifica el directorio base de la instalación de MariaDB.
-
-datadir                 = /var/lib/mysql
-# Especifica el directorio donde se almacenan los datos de la base de datos.
-
-tmpdir                  = /tmp
-# Especifica el directorio donde se almacenan los archivos temporales.
+user                    = root # Especifica el usuario bajo el cual se ejecutará el servidor MariaDB.
+pid-file                = /run/mysqld/mysqld.pid # Especifica la ubicación del archivo PID del servidor MariaDB.
+socket                  = /run/mysqld/mysqld.sock # Especifica la ubicación del archivo de socket utilizado para las conexiones locales.
+port                    = 3306 # Especifica el puerto en el que el servidor MariaDB escuchará las conexiones.
+basedir                 = /usr # Especifica el directorio base de la instalación de MariaDB.
+datadir                 = /var/lib/mysql # Especifica el directorio donde se almacenan los datos de la base de datos.
+tmpdir                  = /tmp # Especifica el directorio donde se almacenan los archivos temporales.
 
 lc-messages-dir         = /usr/share/mysql
 # Especifica el directorio donde se encuentran los archivos de mensajes de idioma.
 
-bind-address            = 0.0.0.0
+bind-address            = mariadb
 # Especifica la dirección IP en la que el servidor MariaDB escuchará las conexiones. 
 # 0.0.0.0 significa que escuchará en todas las interfaces de red disponibles.
 

@@ -1,10 +1,30 @@
+networks:
+  agheredinet:
+    name: agheredinet
+    driver: bridge
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      device: /home/${USER}/data/wordpress
+      o: bind
+      type: none
+  
+  mariadb_data:
+    driver_opts:
+      device: /home/${USER}/data/mysql
+      o: bind
+      type: none
+    driver: local
+
 services:
   nginx:
-    container_name: nginx
     build: ./requirements/nginx
+    container_name: nginx
     image: nginx
     ports:
-      - "443:443"
+      - 443:443
     volumes:
       - wordpress_data:/var/www/html
     restart: always
@@ -36,23 +56,3 @@ services:
     env_file:
       - .env
     restart: always
-
-volumes:
-  wordpress_data:
-    driver: local
-    driver_opts:
-      device: /home/${USER}/data/wordpress
-      o: bind
-      type: none
-  
-  mariadb_data:
-    driver_opts:
-      device: /home/${USER}/data/mariadb
-      o: bind
-      type: none
-    driver: local
-
-networks:
-  agheredinet:
-    name: agheredinet
-    driver: bridge
