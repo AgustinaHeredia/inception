@@ -20,17 +20,17 @@ sleep 5
 
 # Conexión como root para configurar la base de datos y usuarios
 echo "Configurando la base de datos y permisos..."
-mysql -u root <<EOF
+mysql -u root -p${DB_ROOT_PASS} <<EOF
 CREATE DATABASE IF NOT EXISTS ${DB_NAME};
 CREATE USER IF NOT EXISTS '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';
 GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON *.* TO '${WP_USER}'@'%' IDENTIFIED BY '${WP_PASS}' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'wordpress.agheredinet' IDENTIFIED BY '${DB_PASS}' WITH GRANT OPTION;
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASS}';
 FLUSH PRIVILEGES;
 EOF
 
 # Apaga el servicio de MariaDB
-mysqladmin -u ${DB_ROOT} --password=${DB_ROOT_PASS} shutdown
+mysqladmin -u root -p${DB_ROOT_PASS} shutdown
 
 # Ejecuta MariaDB en modo consola para mantener el contenedor en ejecución
 exec mysqld --user=mysql --console
