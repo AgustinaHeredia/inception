@@ -9,7 +9,7 @@ all: up
 
 up:
 	mkdir -p /home/$(USER)/data/wordpress
-	mkdir -p /home/$(USER)/data/mariadb
+	mkdir -p /home/$(USER)/data/mysql
 	docker-compose -f ./srcs/docker-compose.yml up -d --build
 
 stop:
