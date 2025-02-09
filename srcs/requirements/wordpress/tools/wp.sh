@@ -18,7 +18,11 @@ fi
 
 # Verifica si el archivo de configuración de WordPress existe (esta vez no debería existir ya que aún no hemos descargado WordPress),
 # después de verificar, descarga e instala WordPress con las credenciales pasadas en el archivo .env.
-if [ ! -f ./wp-config.php ]; then
+if [ -f ./wp-config.php ]; then
+    echo "WordPress ya existe."
+else
+    echo "Descargando y  configurando WordPress..."
+
     wp core download --allow-root
     wp config create --dbname=$DB_NAME --dbuser=$DB_USER --dbpass=$DB_PASS --dbhost=$DB_HOST --allow-root
     wp core install --url=$DOMAIN_NAME --title="$WP_TITLE" --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASS --admin_email=$WP_ADMIN_EMAIL --skip-email --allow-root
