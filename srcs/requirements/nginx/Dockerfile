@@ -9,7 +9,7 @@ RUN apt install -y nginx && apt install -y openssl
 EXPOSE 443
 
 # Copia el script de inicio de nginx desde el host al contenedor
-COPY ./tools/nginx_start.sh /var/www
+COPY ./tools/nginx_start.sh /var/www/.
 # Copia el archivo de configuración de nginx desde el host al contenedor
 COPY ./conf/default /etc/nginx/sites-enabled/default
 
