@@ -7,7 +7,7 @@ mkdir -p /run/mysqld
 chown mysql:mysql /run/mysqld
 
 # Verifica si el directorio de la base de datos no existe
-if [ ! -d /var/lib/mysql/${DB_NAME} ]; then
+if [ ! -d /var/lib/mysql/mysql ]; then
     echo "Inicializando la base de datos..."
     # Inicializa la base de datos con mysql_install_db
     mysql_install_db --user=mysql --ldata=/var/lib/mysql
