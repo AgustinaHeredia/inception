@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sleep 5
 # Espera a que la base de datos esté lista
 echo "Esperando que la Base de datos esté lista..."
 while ! nc -z $DB_HOST 3306; do   
