@@ -10,6 +10,7 @@ Desplegar una aplicación WordPress usando PHP-FPM.
 Manejar volúmenes para garantizar la persistencia de datos.
 Asegurar que todos los servicios interactúen a través de una red de Docker.
 Este proyecto ayuda a comprender los conceptos de virtualización, contenedorización y automatización de despliegues dentro de un entorno controlado.
+<img width="977" alt="image" src="https://github.com/user-attachments/assets/a464406f-6c5e-4891-966d-f236a58a38e5" />
 
 ## El proyecto
 Este proyecto consiste en la configuración de una infraestructura compuesta por varios servicios utilizando `docker-compose`. La configuración se realiza de manera modular, asegurando la persistencia de datos y el uso de contenedores independientes.
